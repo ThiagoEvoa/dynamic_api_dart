@@ -1,0 +1,24 @@
+services:
+  dynamic-api-dart:
+    container_name: dynamic-api-dart-app  # This forces a simple name
+    build: .
+    restart: always
+    networks:
+      - tunnel_net
+
+  tunnel:
+    container_name: cloudflare-tunnel
+    image: cloudflare/cloudflared:latest
+    restart: always
+    # We add --no-autoupdate for stability on Raspberry Pi
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    networks:
+      - tunnel_net
+    depends_on:
+      - dynamic-api-dart
+
+networks:
+  tunnel_net:
+    driver: bridge
