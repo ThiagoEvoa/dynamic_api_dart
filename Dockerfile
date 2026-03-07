@@ -15,7 +15,7 @@ COPY . .
 RUN dart pub add --dev dart_frog_cli
 
 # Create the production build.
-RUN dart_frog build
+RUN dart run dart_frog_cli:dart_frog build
 
 # Resolve dependencies in the build directory.
 WORKDIR /app/build
