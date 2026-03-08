@@ -1,5 +1,5 @@
 # Use the official Dart image as the build environment.
-FROM dart:stable AS build
+FROM dart:stable
 
 # Set the working directory.
 WORKDIR /app
@@ -12,14 +12,13 @@ RUN dart pub get
 COPY . .
 
 # Install dart_frog_cli to build the project.
-RUN dart pub add dart_frog
+RUN dart pub global activate dart_frog_cli
 
 # Create the production build.
 RUN dart_frog build
 
 # Resolve dependencies in the build directory.
 WORKDIR /app/build
-RUN dart pub get
 
 # Compile the server to a self-contained executable.
 # RUN dart compile exe bin/server.dart -o bin/server
