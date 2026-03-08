@@ -12,10 +12,10 @@ RUN dart pub get
 COPY . .
 
 # Install dart_frog_cli to build the project.
-RUN dart pub add --dev dart_frog_cli
+RUN dart pub global activate dart_frog_cli --no-executables
 
 # Create the production build.
-RUN dart run dart_frog_cli:dart_frog build
+RUN dart pub global run dart_frog_cli:dart_frog build
 
 # Resolve dependencies in the build directory.
 WORKDIR /app/build
