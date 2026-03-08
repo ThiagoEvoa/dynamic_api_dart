@@ -1,5 +1,5 @@
 # Use the official Dart image as the build environment.
-FROM dart:stable
+FROM dart:stable AS build
 
 # Set the working directory.
 WORKDIR /app
