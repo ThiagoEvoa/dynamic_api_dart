@@ -18,7 +18,7 @@ COPY . .
 # RUN dart pub global run dart_frog_cli:dart_frog build
 
 # Resolve dependencies in the build directory.
-# WORKDIR /app/build
+WORKDIR /app/build
 RUN dart pub get
 
 # Compile the server to a self-contained executable.
