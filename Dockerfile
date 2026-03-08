@@ -19,7 +19,7 @@ COPY . .
 
 # Resolve dependencies in the build directory.
 # WORKDIR /app/build
-# RUN dart pub get
+RUN dart pub get
 
 # Compile the server to a self-contained executable.
 # RUN dart compile exe bin/server.dart -o bin/server
@@ -31,7 +31,7 @@ COPY . .
 # COPY --from=build /app/build/bin/server /app/bin/server
 
 # Ensure packages are still up-to-date if anything has changed
-RUN dart pub get --offline
+# RUN dart pub get --offline
 RUN dart compile exe bin/server.dart -o bin/server
 
 # Build minimal serving image from AOT-compiled `/server` and required system
