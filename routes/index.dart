@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
-//
 
-dynamic json = <dynamic, dynamic>{};
+dynamic dynamicJson = <dynamic, dynamic>{};
 
 Future<Response> onRequest(RequestContext context) async {
   return switch (context.request.method) {
@@ -18,11 +17,11 @@ Future<Response> onRequest(RequestContext context) async {
 }
 
 Future<Response> get(RequestContext context) async {
-  return Response.json(body: json);
+  return Response.json(body: dynamicJson);
 }
 
 Future<Response> post(RequestContext context) async {
   final request = context.request;
-  json = json = await request.json();
-  return Response.json(body: json);
+  dynamicJson = dynamicJson = await request.json();
+  return Response.json(body: dynamicJson);
 }
